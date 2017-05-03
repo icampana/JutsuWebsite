@@ -1,1 +1,17 @@
-{}
+{
+  "menu": [
+    {
+      "label": "Home",
+      "url": "index.html",
+      "active": true
+    },
+    {
+      "label": "About us",
+      "url": "about_us.html"
+    },
+    {
+      "label": "Contact",
+      "url": "contact.html"
+    }
+  ]
+}
