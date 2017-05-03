@@ -16,7 +16,7 @@ var BUILD_FOLDER = 'html';
 gulp.task('default', ['static', 'nunjucks', 'less']);
 
 // Watching tasks to update on change
-gulp.watch('app/less/**/*.less', ['less']);
+gulp.watch('app/less/*.less', ['less']);
 gulp.watch('app/**/**/*.nunjucks', ['nunjucks']);
 
 /**
