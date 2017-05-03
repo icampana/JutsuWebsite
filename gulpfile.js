@@ -3,6 +3,8 @@ var gutil = require('gulp-util');
 var data = require('gulp-data');
 var less = require('gulp-less');
 var path = require('path');
+var spritesmith = require('gulp.spritesmith');
+
 var nunjucksRender = require('gulp-nunjucks-render');
 var browserSync = require('browser-sync').create();
 
@@ -14,7 +16,7 @@ var copyFiles = [
 var BUILD_FOLDER = 'html';
 
 // Initial template compilation
-gulp.task('default', ['static', 'assets', 'nunjucks', 'less']);
+gulp.task('default', ['static', 'assets', 'sprite', 'nunjucks', 'less']);
 
 /**
  * Copies static files to the assets directory to enable final rendering.
@@ -26,7 +28,7 @@ gulp.task('static', function() {
 });
 
 gulp.task('assets', function() {
-  return gulp.src('app/assets/**/*', {base: 'app/assets'}).pipe(gulp.dest(BUILD_FOLDER + '/assets'));
+  return gulp.src('app/assets/*', {base: 'app/assets'}).pipe(gulp.dest(BUILD_FOLDER + '/assets'));
 });
 
 /**
@@ -60,6 +62,18 @@ gulp.task('less', function() {
   })).pipe(gulp.dest(BUILD_FOLDER + '/css'));
 });
 
+
+gulp.task('sprite', function () {
+    var spriteData = gulp.src('app/sprites/*.png')
+        .pipe(spritesmith({
+            /* this whole image path is used in css background declarations */
+            imgName: '../assets/sprite.png',
+            cssName: 'sprite.css'
+        }));
+    spriteData.img.pipe(gulp.dest(BUILD_FOLDER + '/assets'));
+    spriteData.css.pipe(gulp.dest(BUILD_FOLDER + '/css'));
+});
+
 // Static Server + watching scss/html files
 gulp.task('serve', ['static', 'assets', 'nunjucks', 'less'], function() {
 
@@ -70,6 +84,7 @@ gulp.task('serve', ['static', 'assets', 'nunjucks', 'less'], function() {
     // Watching tasks to update on change
     gulp.watch('app/less/**/*.less', ['less']);
     gulp.watch('app/assets/*', ['assets']);
+    gulp.watch('app/sprite/*.png', ['sprite']);
     gulp.watch('app/**/**/*.nunjucks', ['nunjucks']);
 
     gulp.watch("html/**/*").on('change', browserSync.reload);
