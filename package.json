@@ -9,6 +9,8 @@
   },
   "devDependencies": {
     "bootstrap-less": "^3.3.8",
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
     "gulp-data": "^1.2.1",
     "gulp-less": "^3.3.0",
     "jquery": "^3.2.1"

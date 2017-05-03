@@ -4,6 +4,7 @@ var data = require('gulp-data');
 var less = require('gulp-less');
 var path = require('path');
 var nunjucksRender = require('gulp-nunjucks-render');
+var browserSync = require('browser-sync').create();
 
 var copyFiles = [
   'node_modules/bootstrap-less/js/bootstrap.min.js',
@@ -14,11 +15,6 @@ var BUILD_FOLDER = 'html';
 
 // Initial template compilation
 gulp.task('default', ['static', 'assets', 'nunjucks', 'less']);
-
-// Watching tasks to update on change
-gulp.watch('app/less/**/*.less', ['less']);
-gulp.watch('app/assets/*', ['assets']);
-gulp.watch('app/**/**/*.nunjucks', ['nunjucks']);
 
 /**
  * Copies static files to the assets directory to enable final rendering.
@@ -62,4 +58,19 @@ gulp.task('less', function() {
       path.join(__dirname, 'less', 'includes')
     ]
   })).pipe(gulp.dest(BUILD_FOLDER + '/css'));
+});
+
+// Static Server + watching scss/html files
+gulp.task('serve', ['static', 'assets', 'nunjucks', 'less'], function() {
+
+    browserSync.init({
+        server: "./html"
+    });
+
+    // Watching tasks to update on change
+    gulp.watch('app/less/**/*.less', ['less']);
+    gulp.watch('app/assets/*', ['assets']);
+    gulp.watch('app/**/**/*.nunjucks', ['nunjucks']);
+
+    gulp.watch("html/**/*").on('change', browserSync.reload);
 });
