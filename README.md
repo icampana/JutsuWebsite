@@ -1,4 +1,4 @@
-#Static files website
+Static files website
 ======
 
 Generates a common website structure based on [Bootstrap 3](http://getbootstrap.com/),

@@ -1,13 +1,14 @@
 {
-  "name": "deprati_hybris",
+  "name": "static_website",
   "version": "1.0.0",
-  "description": "Plantilla base para Hybris",
+  "description": "Base template to generate static html sites",
   "main": "gulpfile.js",
   "dependencies": {
     "gulp": "^3.9.1",
     "gulp-nunjucks-render": "^2.2.1"
   },
   "devDependencies": {
+    "bootstrap-less": "^3.3.8",
     "gulp-data": "^1.2.1",
     "gulp-less": "^3.3.0"
   },
@@ -16,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "gogs@dev.domo.ec:DOMOEC/DePratiHybris.git"
+    "url": "gogs@dev.domo.ec:DOMOEC/StaticWebsite.git"
   },
   "author": "Iván Campaña <ivan.campana@domo.ec>",
   "license": "ISC"
