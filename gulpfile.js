@@ -26,7 +26,7 @@ gulp.task('static', function() {
 });
 
 gulp.task('assets', function() {
-  return gulp.src('app/assets/*', {base: 'app/assets'}).pipe(gulp.dest(BUILD_FOLDER + '/assets'));
+  return gulp.src('app/assets/**/*', {base: 'app/assets'}).pipe(gulp.dest(BUILD_FOLDER + '/assets'));
 });
 
 /**
