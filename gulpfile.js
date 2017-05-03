@@ -13,10 +13,11 @@ var copyFiles = [
 var BUILD_FOLDER = 'html';
 
 // Initial template compilation
-gulp.task('default', ['static', 'nunjucks', 'less']);
+gulp.task('default', ['static', 'assets', 'nunjucks', 'less']);
 
 // Watching tasks to update on change
-gulp.watch('app/less/*.less', ['less']);
+gulp.watch('app/less/**/*.less', ['less']);
+gulp.watch('app/assets/*', ['assets']);
 gulp.watch('app/**/**/*.nunjucks', ['nunjucks']);
 
 /**
@@ -26,6 +27,10 @@ gulp.watch('app/**/**/*.nunjucks', ['nunjucks']);
  */
 gulp.task('static', function() {
   return gulp.src(copyFiles, {base: 'node_modules'}).pipe(gulp.dest(BUILD_FOLDER + '/assets'));
+});
+
+gulp.task('assets', function() {
+  return gulp.src('app/assets/*', {base: 'app/assets'}).pipe(gulp.dest(BUILD_FOLDER + '/assets'));
 });
 
 /**
@@ -51,7 +56,7 @@ gulp.task('nunjucks', function() {
  * @return {[type]} [description]
  */
 gulp.task('less', function() {
-  return gulp.src('./app/less/**/*.less').pipe(less({
+  return gulp.src('./app/less/*.less').pipe(less({
     paths: [
       './node_modules/bootstrap-less',
       path.join(__dirname, 'less', 'includes')
