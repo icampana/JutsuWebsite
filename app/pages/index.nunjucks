@@ -6,8 +6,9 @@
 <!-- Importing Nunjucks Macro -->
 {% import 'macros/navigation.nunjucks' as nav %}
 
-<!-- Creating the navigation with activePage = 'home' -->
-{{nav.active('home')}}
-
-<h1>This is the index page</h1>
+<div class="jumbotron">
+  <h1>Home Page</h1>
+  <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+  <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+</div>
 {% endblock %}
