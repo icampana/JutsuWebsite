@@ -38,12 +38,14 @@
   <div class="container">
     <!-- You write code for this content block in another file -->
     {% block content %} {% endblock %}
+  </div>
 
-    <footer class="footer">
+  <footer class="footer">
+    <div class="container">
       <!-- General footer -->
       {% include "partials/footer.nunjucks" %}
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   <script src="assets/jquery/dist/jquery.min.js"></script>
   <script src="assets/bootstrap-less/js/bootstrap.min.js"></script>
