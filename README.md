@@ -13,3 +13,10 @@ gulp
 
 This instructions will generate the basic info in HTML format and continue to
 monitor changes and update the folder as needed.
+
+##Serving files
+After having all setup, you can load a small server with:
+
+```
+gulp serve
+```
