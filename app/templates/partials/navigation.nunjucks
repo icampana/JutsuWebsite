@@ -1,8 +1,8 @@
 <!-- navigation.nunjucks -->
 <ul class="nav navbar-nav">
   {% for item in menu %}
-  <li {% if item.active %}class="active"{% endif %}>
-    <a href="{{item.url}}">{{item.label}}</a>
+  <li {% if item.url == currentPage %}class="active"{% endif %}>
+	{{nav.createLink(item.label, item.url)}}
   </li>
   {% endfor %}
 </ul>
