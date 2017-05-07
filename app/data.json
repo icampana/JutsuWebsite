@@ -1,9 +1,9 @@
 {
+  "sitename": "My Website",
   "menu": [
     {
       "label": "Home",
-      "url": "index.html",
-      "active": true
+      "url": "index.html"
     },
     {
       "label": "About us",

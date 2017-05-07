@@ -1,0 +1,16 @@
+<!-- index.nunjucks -->
+{% extends "layout.nunjucks" %}
+
+{% block content %}
+
+<!-- Importing Nunjucks Macro -->
+{% import 'macros/navigation.nunjucks' as nav %}
+
+<div class="jumbotron">
+  <h1>About Us</h1>
+  <p class="lead">
+    General Information about the company.
+  </p>
+  <p><a class="btn btn-lg btn-success" href="#" role="button">Send us an e-mail</a></p>
+</div>
+{% endblock %}
