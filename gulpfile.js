@@ -31,6 +31,25 @@ gulp.task('assets', function() {
   return gulp.src('app/assets/*', {base: 'app/assets'}).pipe(gulp.dest(BUILD_FOLDER + '/assets'));
 });
 
+function getDataForFile(file) {
+  var TranslatedName = file.relative.replace('.nunjucks', '.html');
+  var PageName = 'Unnamed Page';
+
+  // Find the File associated data
+  if (file.data.menu) {
+    var localMenu = file.data.menu;
+    for(c=0; c< localMenu.length; c++){
+      if (TranslatedName == localMenu[c].url) {
+        PageName = localMenu[c].label;
+      }
+    }
+  }
+  return {
+    pagename: PageName,
+    currentPage: TranslatedName
+  };
+}
+
 /**
  * Nunjucks template compilation and HTML generation.
  *
@@ -43,6 +62,7 @@ gulp.task('nunjucks', function() {
     .pipe(data(function() {
     return require('./app/data.json')
   }))
+  .pipe(data(getDataForFile))
   // Renders template with nunjucks
     .pipe(nunjucksRender({path: ['app/templates']}))
   // output files in html folder
